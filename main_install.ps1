@@ -1,11 +1,15 @@
+# TO-DO: Add default 'everything' shortcut of win+alt+spacebar
+# TO-DO: Add ahk scripts to Windows10 'startup' folder. Changed with the creators update.
+# TO-DO: Add the Reddit Wallpaper changer.
+# TO-DO: Make taskbar appear on right side of monitor.
+
+
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
-###############################
-# Global Settings
-###############################
-
-# Install Chocolatey
+# Install Chocolatey and refresh the powershell session
 iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+Update-SessionEnvironment
+
 
 # Install Fundamentals
 choco install vcredist2015 -y 
@@ -24,6 +28,7 @@ choco install autohotkey -y
 choco install git -y
 choco install kdiff3 -y
 choco install gitextensions -y
+choco install everything -y
 
 # Install IDEs
 choco install visualstudiocode -y
@@ -43,9 +48,6 @@ choco install gimp2 -y
 choco install putty -y
 choco install deluge -y
 choco install teamviewer -y
-
-# TO-DO: Add default 'everything' shortcut
-choco install everything -y
 
 # Remove Unused Windows 10 Apps
 Get-AppxPackage *3dbuilder* | Remove-AppxPackage
