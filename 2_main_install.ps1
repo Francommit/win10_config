@@ -4,11 +4,8 @@
 # TO-DO: Make taskbar appear on right side of monitor.
 
 
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
-# Install Chocolatey and refresh the powershell session
-iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-Update-SessionEnvironment
+# Update-SessionEnvironment
 
 
 # Install Fundamentals
