@@ -1,9 +1,3 @@
-Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
-Import-Module -DisableNameChecking $PSScriptRoot\..\lib\force-mkdir.psm1
-
-echo "Elevating privileges for this process"
-do {} until (Elevate-Privileges SeTakeOwnershipPrivilege)
-
 echo "Disabling Microsoft Telemetry Collection"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Type DWord -Value 0
 
@@ -93,6 +87,4 @@ foreach ($app in $apps) {
         Remove-AppxProvisionedPackage -Online
 }
 
-# Prevents "Suggested Applications" returning
-force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
 sp "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
