@@ -111,7 +111,6 @@ Pin-App "xbox" -unpin
 Pin-App "Microsoft Edge" -unpin
 Pin-App "Photos" -unpin
 
-
 # Hide Search button / box
 Write-Host "Hiding Search Box / Button..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
@@ -119,23 +118,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" 
 # Show all tray icons
 Write-Host "Showing all tray icons..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
- 
-# Remove Pictures icon from computer namespace
-Write-Host "Removing Pictures icon from computer namespace..."
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}" -Recurse -ErrorAction SilentlyContinue
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" -Recurse -ErrorAction SilentlyContinue
 
-# Remove Music icon from computer namespace
-Write-Host "Removing Music icon from computer namespace..."
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}" -Recurse -ErrorAction SilentlyContinue
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" -Recurse -ErrorAction SilentlyContinue
-
-# Remove Videos icon from computer namespace
-Write-Host "Removing Videos icon from computer namespace..."
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}" -Recurse -ErrorAction SilentlyContinue
-Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" -Recurse -ErrorAction SilentlyContinue
-
-Write-Host "Press any key to restart your system..." -ForegroundColor Black -BackgroundColor White
-$key = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 Write-Host "Restarting..."
 Restart-Computer
