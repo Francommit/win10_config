@@ -1,4 +1,4 @@
- TO-DO: Add default 'everything' shortcut of win+alt+spacebar
+# TO-DO: Add default 'everything' shortcut of win+alt+spacebar
 # TO-DO: Add ahk scripts to Windows10 'startup' folder. Changed with the creators update.
 
 
@@ -34,7 +34,7 @@ choco install steam -y
 # Install Img tools
 choco install imgburn -y 
 choco install rufus -y
-choco install gimp2 -y 
+choco install gimp -y 
 
 # Install Network tools
 choco install putty -y
