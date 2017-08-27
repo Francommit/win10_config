@@ -1,5 +1,4 @@
 # TO-DO: Add default 'everything' shortcut of win+alt+spacebar
-# TO-DO: Add ahk scripts to Windows10 'startup' folder. Changed with the creators update.
 
 function Pin-App { param(
 [string]$appname,
@@ -46,3 +45,34 @@ Pin-App "Git Extensions"
 Pin-App "Deluge" 
 Pin-App "Teamviewer 12" 
 Pin-App "Reddit Wallpaper Changer" 
+
+
+# Autohotkey script auto-start
+Write-Host "Place default AHK script in Startup folder. Shell:startup to navigate there"
+
+New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\auto_closers.ahk" -type file -value "#NoEnv
+SetWorkingDir %A_ScriptDir%
+CoordMode, Mouse, Window
+SendMode Input
+#SingleInstance Force
+SetTitleMatchMode 2
+DetectHiddenWindows Off
+#WinActivateForce
+SetControlDelay 1
+SetWinDelay 0
+SetKeyDelay -1
+SetMouseDelay -1
+SetBatchLines -1
+
+
+Macro1:
+Loop
+{
+    WinActivate, This is an unregistered copy
+    Sleep, 333
+    WinKill, This is an unregistered copy
+    Sleep, 333
+}
+Return
+"
+
