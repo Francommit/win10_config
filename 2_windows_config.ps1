@@ -1,4 +1,4 @@
-echo "Disabling Microsoft Telemetry Collection"
+Write-Host "Disabling Microsoft Telemetry Collection"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Type DWord -Value 0
 
 Write-Host "Setting Power Settings: Disable Hibernation, Disable Standby, Set Various Timeouts"
@@ -22,7 +22,6 @@ Set-ItemProperty $key ShowTaskViewButton 0
 
 # Show "This PC" on desktop
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Value 0
-
 
 Write-Host "Uninstalling default apps"
 $apps = @(
