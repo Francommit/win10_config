@@ -86,5 +86,3 @@ foreach ($app in $apps) {
         where DisplayName -EQ $app |
         Remove-AppxProvisionedPackage -Online
 }
-
-sp "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
