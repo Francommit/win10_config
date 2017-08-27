@@ -40,3 +40,7 @@ choco install gimp -y
 choco install putty -y
 choco install deluge -y
 choco install teamviewer -y
+
+
+Write-Host "Restarting..."
+Restart-Computer
