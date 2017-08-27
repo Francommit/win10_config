@@ -16,6 +16,7 @@ choco install autohotkey -y
 # Install Source Management apps
 choco install git -y
 choco install kdiff3 -y
+choco install everything --params "/service" -y
 choco install gitextensions -y
 
 # Install IDEs
@@ -36,9 +37,6 @@ choco install gimp -y
 choco install putty -y
 choco install deluge -y
 choco install teamviewer -y
-
-# This complains about the installer but it works so UAC prompts are disabled
-choco install everything --params "/run-on-system-startup " -y
 
 Write-Host "Restarting..."
 Restart-Computer
