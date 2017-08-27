@@ -20,7 +20,6 @@ choco install autohotkey -y
 choco install git -y
 choco install kdiff3 -y
 choco install gitextensions -y
-choco install everything --params "/service" -y
 
 # Install IDEs
 choco install visualstudiocode -y
@@ -41,6 +40,8 @@ choco install putty -y
 choco install deluge -y
 choco install teamviewer -y
 
+# This complains about the installer but it works so UAC prompts are disabled
+choco install everything --params "/run-on-system-startup " -y
 
 Write-Host "Restarting..."
 Restart-Computer
