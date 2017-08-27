@@ -1,7 +1,7 @@
 echo "Disabling Microsoft Telemetry Collection"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Type DWord -Value 0
 
-echo "Setting Power Settings: Disable Hibernation, Disable Standby, Set Various Timeouts"
+Write-Host "Setting Power Settings: Disable Hibernation, Disable Standby, Set Various Timeouts"
 powercfg /h off
 powercfg -change -hibernate-timeout-dc 0
 powercfg -change -hibernate-timeout-ac 0
@@ -12,9 +12,8 @@ powercfg -change -monitor-timeout-ac 30
 powercfg -change -disk-timeout-dc 180
 powercfg -change -disk-timeout-ac 180
 
-echo "Setting Windows Explorer settings: Show Hidden Files, Show File Extension, Open Explorer default to This PC"
+Write-Host "Setting Windows Explorer settings: Show Hidden Files, Show File Extension, Open Explorer default to This PC"
 Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoRestartShell -Value 0
-#Stop-Process -Force -ProcessName "explorer"
 $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
 Set-ItemProperty $key Hidden 1
 Set-ItemProperty $key HideFileExt 0
@@ -25,7 +24,7 @@ Set-ItemProperty $key ShowTaskViewButton 0
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Value 0
 
 
-echo "Uninstalling default apps"
+Write-Host "Uninstalling default apps"
 $apps = @(
     # default Windows 10 apps
     "Microsoft.3DBuilder"
@@ -106,7 +105,13 @@ function Pin-App {    param(
     }
 }
 
-echo "Unpinning stock applications"
+Write-Host "Unpinning stock applications"
 Pin-App "xbox" -unpin
 Pin-App "Microsoft Edge" -unpin
 Pin-App "Photos" -unpin
+
+
+# Hide Search button / box
+Write-Host "Hiding Search Box / Button..."
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
+ 
