@@ -1,22 +1,30 @@
 # Remove Unused Windows 10 Apps
-Get-AppxPackage *3dbuilder* | Remove-AppxPackage
-Get-AppxPackage *bingsports* | Remove-AppxPackage
-Get-AppxPackage *bingfinance* | Remove-AppxPackage
-Get-AppxPackage *bingnews* | Remove-AppxPackage
-Get-AppxPackage *solitairecollection* | Remove-AppxPackage
-Get-AppxPackage *getstarted* | Remove-AppxPackage
-Get-AppxPackage *skypeapp* | Remove-AppxPackage
-Get-AppxPackage *officehub* | Remove-AppxPackage
-Get-AppxPackage *people* | Remove-AppxPackage
-Get-AppxPackage *windowsalarms* | Remove-AppxPackage
-Get-AppxPackage *windowsmaps* | Remove-AppxPackage
-Get-AppxPackage *zunevideo* | Remove-AppxPackage
-Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage
-Get-AppxPackage *MinecraftUWP* | Remove-AppxPackage
-Get-AppxPackage *Netflix* | Remove-AppxPackage
-Get-AppxPackage *PandoraMediaInc* | Remove-AppxPackage
-Get-AppxPackage *WindowsScan* | Remove-AppxPackage
-Get-AppxPackage *Office.Sway* | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.ParentalControls | Remove-AppxPackage
+Get-AppxPackage Windows.ContactSupport | Remove-AppxPackage
+Get-AppxPackage Microsoft.Xbox* | Remove-AppxPackage
+Get-AppxPackage microsoft.windowscommunicationsapps | Remove-AppxPackage # Mail and Calendar
+Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
+Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Zune* | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+Get-AppxPackage Microsoft.Office.Sway | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsFeedback* | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.Cortana | Remove-AppxPackage
+Get-AppxPackage Microsoft.People | Remove-AppxPackage
+Get-AppxPackage Microsoft.Bing* | Remove-AppxPackage # Money, Sports, News, Finance and Weather
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+Get-AppxPackage Microsoft.BioEnrollment | Remove-AppxPackage
+Get-AppxPackage Microsoft.OneConnect | Remove-AppxPackage
+Get-AppxPackage *Twitter* | Remove-AppxPackage
+Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage
+Get-AppxPackage flaregamesGmbH.RoyalRevolt2 | Remove-AppxPackage
+Get-AppxPackage *Netflix | Remove-AppxPackage
+Get-AppxPackage Facebook.Facebook | Remove-AppxPackage
+Get-AppxPackage Microsoft.MinecraftUWP | Remove-AppxPackage
+Get-AppxPackage *MarchofEmpires | Remove-AppxPackage
 
 
 # Disable WiFi Hotspot Auto Connect
