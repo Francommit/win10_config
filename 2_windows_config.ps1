@@ -60,7 +60,8 @@ $apps = @(
     "king.com.CandyCrushSaga"
     "king.com.CandyCrushSodaSaga"
     "king.com.*"
-    "ClearChannelRadioDigital.iHeartRadio"
+
+"ClearChannelRadioDigital.iHeartRadio"
     "4DF9E0F8.Netflix"    
     "6Wunderkinder.Wunderlist"
     "Drawboard.DrawboardPDF"
@@ -114,4 +115,8 @@ Pin-App "Photos" -unpin
 # Hide Search button / box
 Write-Host "Hiding Search Box / Button..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
+ 
+# Show all tray icons
+Write-Host "Showing all tray icons..."
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
  
