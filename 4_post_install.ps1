@@ -18,6 +18,11 @@ Write-Error "Error Pinning/Unpinning App! (App-Name correct?)"
 }
 }
 
+Write-Host "Configuring start menu"
+
+Pin-App "xbox" -unpin
+Pin-App "Microsoft Edge" -unpin
+Pin-App "Photos" -unpin
 
 Pin-App "Google Chrome" 
 Pin-App "Control Panel"
