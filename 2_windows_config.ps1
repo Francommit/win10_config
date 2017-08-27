@@ -1,3 +1,6 @@
+Write-Host "Setting the local timezone."
+Invoke-Expression 'tzutil /s "AUS Eastern Standard Time"'
+
 Write-Host "Disabling Microsoft Telemetry Collection"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Type DWord -Value 0
 
