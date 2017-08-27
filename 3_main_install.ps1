@@ -20,7 +20,7 @@ choco install autohotkey -y
 choco install git -y
 choco install kdiff3 -y
 choco install gitextensions -y
-choco install everything -y
+choco install everything /service -y
 
 # Install IDEs
 choco install visualstudiocode -y
