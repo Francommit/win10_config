@@ -18,6 +18,7 @@ choco install git -y
 choco install kdiff3 -y
 choco install everything --params "/service" -y
 choco install gitextensions -y
+choco install quicklook -y
 
 # Install IDEs
 choco install visualstudiocode -y
