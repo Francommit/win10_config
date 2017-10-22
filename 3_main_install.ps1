@@ -19,6 +19,7 @@ choco install kdiff3 -y
 choco install everything --params "/service" -y
 choco install gitextensions -y
 choco install quicklook -y
+choco install cmder -y
 
 # Install IDEs
 choco install visualstudiocode -y
