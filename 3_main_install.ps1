@@ -8,6 +8,10 @@ choco install flashplayerplugin -y
 choco install libreoffice -y
 choco install reddit-wallpaper-changer -y
 
+# Install gaming tools
+choco install gamesavemanager -y
+choco install cheatengine -y
+
 # Install Common Languages
 choco install python -y
 choco install nodejs.install -y
