@@ -1,6 +1,7 @@
 
 # Install Fundamentals
 choco install vcredist2015 -y 
+choco install directx -y
 choco install jre8 -y 
 choco install 7zip -y 
 choco install googleChrome -y 
