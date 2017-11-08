@@ -7,10 +7,16 @@ The aim of this repository is just to provide a quick set of commonly used tools
 
 ## Steps
 
+NEW WIP STEPS:
 1. Download all files as a zip and extract
-2. Run the first script in Powershell as an Administrator, then close the Powershell session.
-3. Run through each script in Powershell as an Administrator, after your PC restarts run the next script.
-4. After running script four the process is complete. Windows 10 should be configured and ready to go.
+2. Run the first script in Powershell as an Administrator
+3. Come back in 30 minutes. Windows 10 should be configured and ready to go.
+
+Old Steps:
+1. Download all files as a zip and extract
+3. Set "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force" in Powershell as Admin & install chocolatey
+2. Run through each scripts (2,3 then 4) in Powershell as an Administrator, after your PC restarts run the next script.
+3. After running script four the process is complete. Windows 10 should be configured and ready to go.
 
 ## TO-DO
 
