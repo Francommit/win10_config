@@ -102,6 +102,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 Write-Host "Remove File explorer pinned application"
 Remove-Item "$env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\File Explorer.lnk"
 
+Write-Host "Starting new script and stopping current one."
+Disable-ScheduledTask -TaskName "2_windows_config"
+Enable-ScheduledTask -TaskName "3_main_install"
 
 Write-Host "Restarting..."
 Restart-Computer

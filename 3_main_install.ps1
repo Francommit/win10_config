@@ -45,5 +45,9 @@ choco install putty -y
 choco install deluge -y
 choco install teamviewer -y
 
+Write-Host "Starting new script and stopping current one."
+Disable-ScheduledTask -TaskName "3_main_install"
+Enable-ScheduledTask -TaskName "4_post_install"
+
 Write-Host "Restarting..."
 Restart-Computer

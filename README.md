@@ -11,3 +11,8 @@ The aim of this repository is just to provide a quick set of commonly used tools
 2. Run the first script in Powershell as an Administrator, then close the Powershell session.
 3. Run through each script in Powershell as an Administrator, after your PC restarts run the next script.
 4. After running script four the process is complete. Windows 10 should be configured and ready to go.
+
+## TO-DO
+
+1. Test the scheduled task idea
+2. Log to a file somewhere
