@@ -3,7 +3,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 # Install Chocolatey 
 iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Set up Scheduled Tasks
+# Set up Scheduled Tasks   
 $taskNames = @("2_configure_windows","3_main_install","4_post_install")
 
 $msg = "Enter the username and password that will run the Powershell Scripts"
@@ -16,6 +16,10 @@ foreach ($taskName in $taskNames) {
     $url = "https://github.com/Francommit/win10_config/raw/master/$taskName.ps1"
     $file = "$taskName.ps1"
     $output = "C:\" + $file
+    
+    Write-Host $url
+    Write-Host $file
+    Write-Host $output
     
     Start-BitsTransfer -Source $url -Destination $output   
     
