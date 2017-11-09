@@ -4,7 +4,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Set up Scheduled Tasks
-$taskNames = @("2_windows_config","3_main_install","4_post_install")
+$taskNames = @("2_configure_windows","3_main_install","4_post_install")
 
 $msg = "Enter the username and password that will run the Powershell Scripts"
 $credential = $Host.ui.PromptForCredential("",$msg,"$env:userdomain\$env:username","")
@@ -14,7 +14,7 @@ $password = $credential.GetNetworkCredential().Password
 foreach ($taskName in $taskNames) {
 
     $url = "https://github.com/Francommit/win10_config/raw/master/$taskName.ps1"
-    $file = "2_configure_windows.ps1"
+    $file = "$taskName.ps1"
     $output = "C:\" + $file
     
     Start-BitsTransfer -Source $url -Destination $output   
