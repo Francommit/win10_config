@@ -13,8 +13,12 @@ $password = $credential.GetNetworkCredential().Password
 
 foreach ($taskName in $taskNames) {
 
-    Move-Item "$taskName.ps1" "c:\$taskName.ps1"
-
+    $url = "https://github.com/Francommit/win10_config/raw/master/$taskName.ps1"
+    $file = "2_configure_windows.ps1"
+    $output = "C:\" + $file
+    
+    Start-BitsTransfer -Source $url -Destination $output   
+    
     $argument =  "c:\$taskName.ps1"
     $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $argument
     $trigger = New-ScheduledTaskTrigger -AtStartup
