@@ -21,7 +21,7 @@ foreach ($taskName in $taskNames) {
     Write-Host $file
     Write-Host $output
     
-    Start-BitsTransfer -Source $url -Destination $output   
+    Invoke-WebRequest $url -Out $output
     
     $argument =  "c:\$taskName.ps1"
     $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $argument
