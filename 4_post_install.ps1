@@ -77,6 +77,6 @@ Return
 "
 
 Write-Host "Removing old scheduled tasks"
-Unregister-ScheduledTask -TaskName "2_windows_config" -Confirm:$false
+Unregister-ScheduledTask -TaskName "2_configure_windows" -Confirm:$false
 Unregister-ScheduledTask -TaskName "3_main_install" -Confirm:$false
 Unregister-ScheduledTask -TaskName "4_post_install" -Confirm:$false
