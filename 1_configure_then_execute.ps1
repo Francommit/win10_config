@@ -42,4 +42,4 @@ Disable-ScheduledTask -TaskName "3_main_install"
 Disable-ScheduledTask -TaskName "4_post_install"
 
 Write-Host "Restarting..."
-Restart-Computer
+# Restart-Computer
