@@ -7,10 +7,10 @@ The aim of this repository is just to provide a quick set of commonly used tools
 
 ## Steps
 
-NEW WIP STEPS:
-1. Download all files as a zip and extract
-2. Run the first script in Powershell as an Administrator
-3. Come back in 30 minutes. Windows 10 should be configured and ready to go.
+TESTING:
+Run this in powershell:
+powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://github.com/Francommit/win10_config/raw/master/1_configure_then_execute.ps1')"
+
 
 Old Steps:
 1. Download all files as a zip and extract
