@@ -25,7 +25,7 @@ foreach ($taskName in $taskNames) {
     
     $argument =  "c:\$taskName.ps1"
     $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $argument
-    $trigger = New-ScheduledTaskTrigger -AtStartup
+    $trigger = New-ScheduledTaskTrigger -AtLogon
     $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -DontStopOnIdleEnd  
 
     $principal = New-ScheduledTaskPrincipal -UserID $username -LogonType ServiceAccount -RunLevel Highest
@@ -46,4 +46,4 @@ Disable-ScheduledTask -TaskName "3_main_install"
 Disable-ScheduledTask -TaskName "4_post_install"
 
 Write-Host "Restarting..."
-Restart-Computer
+# Restart-Computer
