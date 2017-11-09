@@ -9,7 +9,8 @@ The aim of this repository is just to provide a quick set of commonly used tools
 
 TESTING:
 Run this in powershell:
-powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://github.com/Francommit/win10_config/raw/master/1_configure_then_execute.ps1')"
+
+` powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://github.com/Francommit/win10_config/raw/master/1_configure_then_execute.ps1')"
 
 
 Old Steps:
