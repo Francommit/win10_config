@@ -30,6 +30,7 @@ choco install cmder -y
 choco install visualstudiocode -y
 choco install sublimetext3 -y
 choco install visualstudio2017-installer
+choco install firacode -y
 
 # Install Communication applications
 choco install skype -y
