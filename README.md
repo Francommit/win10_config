@@ -7,12 +7,10 @@ The aim of this repository is just to provide a quick set of commonly used tools
 
 ## Steps
 
-Run this in Powershell as Admin:
+1. Run this in Powershell as Admin:
 
 ```
 powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://github.com/Francommit/win10_config/raw/master/1_configure_then_execute.ps1')"
 ```
 
-## TO-DO
-
-1. Log to a file somewhere
+2. Enjoy a coffee and return in about half an hour
