@@ -15,8 +15,9 @@ choco install git -y
 choco install kdiff3 -y
 choco install gitextensions -y
 
-# Install Terminal Emulator
+# Install Terminals
 choco install cmder -y
+choco install babun -y
 
 # Install IDEs
 choco install sublimetext3 -y
