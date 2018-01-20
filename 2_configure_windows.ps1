@@ -26,71 +26,6 @@ Set-ItemProperty $key ShowTaskViewButton 0
 # Show "This PC" on desktop
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Value 0
 
-Write-Host "Uninstalling default apps"
-$apps = @(
-    # default Windows 10 apps
-    "Microsoft.3DBuilder"
-    "Microsoft.Appconnector"
-    "Microsoft.BingFinance"
-    "Microsoft.BingNews"
-    "Microsoft.BingSports"
-    "Microsoft.BingWeather"    
-    "Microsoft.Getstarted"
-    "Microsoft.MicrosoftOfficeHub"
-    "Microsoft.MicrosoftSolitaireCollection"    
-    "Microsoft.People"
-    "Microsoft.SkypeApp"
-    "Microsoft.WindowsAlarms"
-    "Microsoft.WindowsCamera"
-    "Microsoft.WindowsMaps"
-    "Microsoft.OneConnect"
-    "Microsoft.WindowsPhone"    
-    "microsoft.windowscommunicationsapps"
-    "Microsoft.MinecraftUWP"    
-    "Microsoft.CommsPhone"
-    "Microsoft.ConnectivityStore"
-    "Microsoft.Office.Sway"    
-    "Microsoft.WindowsFeedbackHub"    
-    "Microsoft.BingFoodAndDrink"
-    "Microsoft.BingTravel"
-    "Microsoft.BingHealthAndFitness"
-
-"Microsoft.WindowsReadingList"    
-    "9E2F88E3.Twitter"
-    "PandoraMediaInc.29680B314EFC2"
-    "Flipboard.Flipboard"
-    "ShazamEntertainmentLtd.Shazam"
-    "king.com.CandyCrushSaga"
-    "king.com.CandyCrushSodaSaga"
-    "king.com.*"
-
-"ClearChannelRadioDigital.iHeartRadio"
-    "4DF9E0F8.Netflix"    
-    "6Wunderkinder.Wunderlist"
-    "Drawboard.DrawboardPDF"
-    "2FE3CB00.PicsArt-PhotoStudio"
-    "D52A8D61.FarmVille2CountryEscape"
-    "TuneIn.TuneInRadio"
-    "GAMELOFTSA.Asphalt8Airborne"
-    "DB6EA5DB.CyberLinkMediaSuiteEssentials"
-    "Facebook.Facebook"
-    "flaregamesGmbH.RoyalRevolt2"
-    "Playtika.CaesarsSlotsFreeCasino"
-    "A278AB0D.MarchofEmpires"
-    "KeeperSecurityInc.Keeper"
-    "ThumbmunkeysLtd.PhototasticCollage"
-)
-
-foreach ($app in $apps) {
-    echo "Trying to remove $app"
-
-    Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage
-
-    Get-AppXProvisionedPackage -Online |
-        where DisplayName -EQ $app |
-        Remove-AppxProvisionedPackage -Online
-}
-
 # Hide Search button / box
 Write-Host "Hiding Search Box / Button..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
@@ -98,9 +33,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" 
 # Show all tray icons
 Write-Host "Showing all tray icons..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
-
-Write-Host "Remove File explorer pinned application"
-Remove-Item "$env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\File Explorer.lnk"
 
 Write-Host "Starting new script and stopping current one."
 Disable-ScheduledTask -TaskName "2_configure_windows"
