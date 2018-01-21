@@ -4,6 +4,7 @@ choco install 7zip -y
 choco install googleChrome -y 
 choco install reddit-wallpaper-changer -y
 choco install everything --params "/service" -y
+choco install winaero-tweaker  -y
 
 # Install Programming Languages
 choco install python -y
