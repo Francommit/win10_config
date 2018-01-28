@@ -16,6 +16,13 @@ Write-Error "Error Pinning/Unpinning App! (App-Name correct?)"
 }
 }
 
+
+# Allowing using 'subl' on the command line
+Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
+$systemPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name Path).Path
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value ($systemPath += ';C:\Program Files\Sublime Text 3\') 
+
+
 Write-Host "Configuring start menu"
 
 # Apps to remove
