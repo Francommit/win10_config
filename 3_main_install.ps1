@@ -22,6 +22,8 @@ choco install babun -y
 
 # Install IDEs
 choco install sublimetext3 -y
+choco install sublimetext3.powershellalias -y
+choco install sublimetext3-contextmenu -y
 
 # Install Network tools
 choco install deluge -y
