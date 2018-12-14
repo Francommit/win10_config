@@ -1,6 +1,7 @@
 # Install Fundamentals
 choco install jre8 -y 
 choco install 7zip -y 
+choco install vivaldi -y
 choco install googlechrome -y 
 choco install everything --params "/service" -y
 choco install winaero-tweaker  -y
