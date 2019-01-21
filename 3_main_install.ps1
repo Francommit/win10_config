@@ -7,8 +7,9 @@ choco install everything --params "/service" -y
 choco install winaero-tweaker  -y
 choco install cmder -y
 choco install deluge -y
-choco install ditto.install -y
 choco install autohotkey -y
+choco install zeal.install -y
+choco install wox -y
 
 # Install Source Management apps
 choco install git -y
