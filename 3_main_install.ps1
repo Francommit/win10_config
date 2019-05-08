@@ -7,7 +7,9 @@ choco install winaero-tweaker  -y
 choco install cmder -y
 choco install deluge -y
 choco install autohotkey -y
+choco install royalts-v5 -y
 choco install wox -y
+choco install openssh -y
 
 # Install Source Management apps
 choco install git -y
