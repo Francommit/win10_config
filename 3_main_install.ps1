@@ -1,14 +1,12 @@
 # Install Fundamentals
 choco install jre8 -y 
 choco install 7zip -y 
-choco install vivaldi -y
 choco install googlechrome -y 
 choco install everything --params "/service" -y
 choco install winaero-tweaker  -y
 choco install cmder -y
 choco install deluge -y
 choco install autohotkey -y
-choco install zeal.install -y
 choco install wox -y
 
 # Install Source Management apps
