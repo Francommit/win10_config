@@ -41,38 +41,18 @@ Pin-App "Store"
 Pin-App "Onenote" 
 Pin-App "Sublime Text 3" 
 Pin-App "Git Extensions" 
-Pin-App "Deluge" 
-Pin-App "Teamviewer 13" 
-Pin-App "Reddit Wallpaper Changer" 
+Pin-App "Deluge"
 
-
-# Autohotkey script auto-start
+# Autohotkey script, no capslock, sticku windows, ctral + alt + v for pasting in remote sessions
 Write-Host "Place default AHK script in Startup folder. Shell:startup to navigate there"
 
-New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\auto_closers.ahk" -type file -value "#NoEnv
-SetWorkingDir %A_ScriptDir%
-CoordMode, Mouse, Window
-SendMode Input
-#SingleInstance Force
-SetTitleMatchMode 2
-DetectHiddenWindows Off
-#WinActivateForce
-SetControlDelay 1
-SetWinDelay 0
-SetKeyDelay -1
-SetMouseDelay -1
-SetBatchLines -1
+New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\auto_closers.ahk" -type file -value "^!v::
+SendRaw, %Clipboard%
+return
 
+^SPACE::  Winset, Alwaysontop, , A
 
-Macro1:
-Loop
-{
-    WinActivate, This is an unregistered copy
-    Sleep, 333
-    WinKill, This is an unregistered copy
-    Sleep, 333
-}
-Return
+Capslock::^F12
 "
 
 
@@ -80,65 +60,38 @@ Return
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\force-mkdir.psm1
 
-# Taken from - https://github.com/Sycnex/Windows10Debloater/blob/master/Individual%20Scripts/Debloat%20Windows
-Write-Output "Uninstalling default apps"
-$AppXApps = @(
-
-        #Unnecessary Windows 10 AppX Apps
-        "*Microsoft.BingNews*"
-        "*Microsoft.GetHelp*"
-        "*Microsoft.Getstarted*"
-        "*Microsoft.Messaging*"
-        "*Microsoft.Microsoft3DViewer*"
-        "*Microsoft.MicrosoftOfficeHub*"
-        "*Microsoft.MicrosoftSolitaireCollection*"
-        "*Microsoft.NetworkSpeedTest*"
-        "*Microsoft.Office.Sway*"
-        "*Microsoft.OneConnect*"
-        "*Microsoft.People*"
-        "*Microsoft.Print3D*"
-        "*Microsoft.SkypeApp*"
-        "*Microsoft.WindowsAlarms*"
-        "*Microsoft.WindowsCamera*"
-        "*microsoft.windowscommunicationsapps*"
-        "*Microsoft.WindowsFeedbackHub*"
-        "*Microsoft.WindowsMaps*"
-        "*Microsoft.WindowsSoundRecorder*"
-        "*Microsoft.Xbox.TCUI*"
-        "*Microsoft.XboxApp*"
-        "*Microsoft.XboxGameOverlay*"
-        "*Microsoft.XboxIdentityProvider*"
-        "*Microsoft.XboxSpeechToTextOverlay*"
-        "*Microsoft.ZuneMusic*"
-        "*Microsoft.ZuneVideo*"
-
-        #Sponsored Windows 10 AppX Apps
-        #Add sponsored/featured apps to remove in the "*AppName*" format
-        "*EclipseManager*"
-        "*ActiproSoftwareLLC*"
-        "*AdobeSystemsIncorporated.AdobePhotoshopExpress*"
-        "*Duolingo-LearnLanguagesforFree*"
-        "*PandoraMediaInc*"
-        "*CandyCrush*"
-        "*Wunderlist*"
-        "*Flipboard*"
-        "*Twitter*"
-        "*Facebook*"
-        "*Spotify*"
-    )
-    
-foreach ($App in $AppXApps) {
-    Write-Verbose -Message ('Removing Package {0}' -f $App)
-    Get-AppxPackage -Name $App | Remove-AppxPackage -ErrorAction SilentlyContinue
-    Get-AppxPackage -Name $App -AllUsers | Remove-AppxPackage -AllUsers -ErrorAction SilentlyContinue
-    Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $App | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue
-}
-    
-#Removes AppxPackages
-[regex]$WhitelistedApps = 'Microsoft.Paint3D|Microsoft.WindowsCalculator|Microsoft.WindowsStore|Microsoft.Windows.Photos|CanonicalGroupLimited.UbuntuonWindows|Microsoft.XboxGameCallableUI|Microsoft.XboxGamingOverlay|Microsoft.Xbox.TCUI|Microsoft.XboxGamingOverlay|Microsoft.XboxIdentityProvider|Microsoft.MicrosoftStickyNotes|Microsoft.MSPaint*'
-Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
-Get-AppxPackage | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
-Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
+# Taken from - https://gist.github.com/tkrotoff/830231489af5c5818b15
+Get-AppxPackage Microsoft.Windows.ParentalControls | Remove-AppxPackage
+Get-AppxPackage Windows.ContactSupport | Remove-AppxPackage
+Get-AppxPackage Microsoft.Xbox* | Remove-AppxPackage
+Get-AppxPackage microsoft.windowscommunicationsapps | Remove-AppxPackage # Mail and Calendar
+Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage
+Get-AppxPackage Microsoft.SkypeApp | Remove-AppxPackage
+Get-AppxPackage Microsoft.Zune* | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsPhone | Remove-AppxPackage # Phone Companion
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
+Get-AppxPackage Microsoft.Office.Sway | Remove-AppxPackage
+Get-AppxPackage Microsoft.Appconnector | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsFeedback* | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.FeatureOnDemand.InsiderHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.Cortana | Remove-AppxPackage
+Get-AppxPackage Microsoft.People | Remove-AppxPackage
+Get-AppxPackage Microsoft.Bing* | Remove-AppxPackage # Money, Sports, News, Finance and Weather
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsSoundRecorder | Remove-AppxPackage
+Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
+Get-AppxPackage Microsoft.Advertising.Xaml | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.ParentalControls | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.ContentDeliveryManager | Remove-AppxPackage
+Get-AppxPackage *Twitter* | Remove-AppxPackage
+Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage
+Get-AppxPackage flaregamesGmbH.RoyalRevolt2 | Remove-AppxPackage
+Get-AppxPackage *Netflix | Remove-AppxPackage
+Get-AppxPackage Facebook.Facebook | Remove-AppxPackage
+Get-AppxPackage Microsoft.MinecraftUWP | Remove-AppxPackage
+Get-AppxPackage *MarchofEmpires | Remove-AppxPackage
 
 # Prevents "Suggested Applications" returning
 force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
