@@ -1,9 +1,6 @@
 Write-Host "Setting the local timezone."
 Invoke-Expression 'tzutil /s "AUS Eastern Standard Time"'
 
-Write-Host "Disabling Microsoft Telemetry Collection"
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name AllowTelemetry -Type DWord -Value 0
-
 Write-Host "Setting Power Settings: Disable Hibernation, Disable Standby, Set Various Timeouts"
 powercfg /h off
 powercfg -change -hibernate-timeout-dc 0
@@ -39,10 +36,6 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People
 
 # Turn Off App Suggestions on Start Menu
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
-
-# Hyper-V and Containers
-Enable-WindowsOptionalFeature -Online -FeatureName containers –All
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 
 Write-Host "Starting new script and stopping current one."
 Disable-ScheduledTask -TaskName "2_configure_windows"
