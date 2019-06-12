@@ -30,7 +30,6 @@ Write-Host "Configuring start menu"
 Pin-App "xbox" -unpin
 Pin-App "Microsoft Edge" -unpin
 Pin-App "Photos" -unpin
-Pin-App "Store" -unpin
 Pin-App "Paint 3D" -unpin
 
 # Pinned Apps
@@ -52,7 +51,6 @@ return
 
 ^SPACE::  Winset, Alwaysontop, , A
 
-Capslock::^F12
 "
 
 
