@@ -10,6 +10,7 @@ choco install autohotkey -y
 choco install royalts-v5 -y
 choco install wox -y
 choco install openssh -y
+choco install powershell-core -y
 
 # Install Source Management apps
 choco install git -y
