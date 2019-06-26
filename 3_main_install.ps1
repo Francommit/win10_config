@@ -1,5 +1,5 @@
 # Install Fundamentals
-choco install jre8 -y 
+choco install jdk8 -y 
 choco install 7zip -y 
 choco install googlechrome -y 
 choco install everything --params "/service" -y
@@ -11,6 +11,7 @@ choco install royalts-v5 -y
 choco install wox -y
 choco install openssh -y
 choco install powershell-core -y
+choco install stardock-fences -y
 
 # Install Source Management apps
 choco install git -y
