@@ -8,6 +8,7 @@ choco install autohotkey -y
 choco install royalts-v5 -y
 choco install openssh -y
 choco install powershell-core -y
+scoop install ffsend
 
 # Install Source Management apps
 choco install git -y
