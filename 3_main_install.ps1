@@ -3,15 +3,11 @@ choco install jdk8 -y
 choco install 7zip -y 
 choco install googlechrome -y 
 choco install everything --params "/service" -y
-choco install winaero-tweaker  -y
-choco install cmder -y
 choco install deluge -y
 choco install autohotkey -y
 choco install royalts-v5 -y
-choco install wox -y
 choco install openssh -y
 choco install powershell-core -y
-choco install stardock-fences -y
 
 # Install Source Management apps
 choco install git -y
