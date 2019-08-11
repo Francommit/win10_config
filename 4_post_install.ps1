@@ -37,23 +37,21 @@ Pin-App "Google Chrome"
 Pin-App "Control Panel"
 Pin-App "This PC"
 Pin-App "Store"
-Pin-App "Onenote" 
 Pin-App "Sublime Text 3" 
 Pin-App "Git Extensions" 
 Pin-App "Deluge"
 
-# Autohotkey script, no capslock, sticku windows, ctral + alt + v for pasting in remote sessions
+# Autohotkey script, capslock to Windows, ctrl + alt + v for pasting in remote sessions
 Write-Host "Place default AHK script in Startup folder. Shell:startup to navigate there"
 
 New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\auto_closers.ahk" -type file -value "^!v::
 SendRaw, %Clipboard%
 return
 
-^SPACE::  Winset, Alwaysontop, , A
+; Rebind Capslock to the windows key
+CapsLock::LWin
 
 "
-
-
 # Removing the Default Windows 10 Apps 
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\force-mkdir.psm1
