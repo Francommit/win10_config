@@ -3,6 +3,9 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 # Install Chocolatey 
 iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
+# Install Scoop
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+
 # Set up Scheduled Tasks   
 $taskNames = @("2_configure_windows","3_main_install","4_post_install")
 
