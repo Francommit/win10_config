@@ -37,6 +37,16 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People
 # Turn Off App Suggestions on Start Menu
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 
+# Enable Windows Containers
+Enable-WindowsOptionalFeature -Online -FeatureName containers –All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+
+# Enable Windows Sandbox
+Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online
+
+# WSL2
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+
 Write-Host "Starting new script and stopping current one."
 Disable-ScheduledTask -TaskName "2_configure_windows"
 Enable-ScheduledTask -TaskName "3_main_install"
