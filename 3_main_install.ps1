@@ -1,4 +1,5 @@
 # Install Fundamentals
+choco install chocolateygui -y
 choco install jdk8 -y 
 choco install 7zip -y 
 choco install googlechrome -y 
