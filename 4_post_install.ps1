@@ -1,50 +1,13 @@
 
-function Pin-App { param(
-[string]$appname,
-[switch]$unpin
-)
-    try {
-        if ($unpin.IsPresent) {
-            ((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'From "Start" UnPin|Unpin from Start'} | %{$_.DoIt()}
-            return "App '$appname' unpinned from Start"
-        } else {
-            ((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'To "Start" Pin|Pin to Start'} | %{$_.DoIt()}
-            return "App '$appname' pinned to Start"
-        }
-    }
-    catch {
-        Write-Error "Error Pinning/Unpinning App! (App-Name correct?)"
-    }
-}
-
-
 # Allowing using 'subl' on the command line
 Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
 $systemPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name Path).Path
 Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value ($systemPath += ';C:\Program Files\Sublime Text 3\') 
 
-
-Write-Host "Configuring start menu"
-
-# Apps to remove
-Pin-App "xbox" -unpin
-Pin-App "Microsoft Edge" -unpin
-Pin-App "Photos" -unpin
-Pin-App "Paint 3D" -unpin
-
-# Pinned Apps
-Pin-App "Google Chrome" 
-Pin-App "Control Panel"
-Pin-App "This PC"
-Pin-App "Store"
-Pin-App "Sublime Text 3" 
-Pin-App "Git Extensions" 
-Pin-App "Deluge"
-
 # Autohotkey script, capslock to Windows, ctrl + alt + v for pasting in remote sessions
 Write-Host "Place default AHK script in Startup folder. Shell:startup to navigate there"
 
-New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\auto_closers.ahk" -type file -value "^!v::
+New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\scripts.ahk" -type file -value "^!v::
 SendRaw, %Clipboard%
 return
 
@@ -92,7 +55,6 @@ Get-AppxPackage *MarchofEmpires | Remove-AppxPackage
 # Prevents "Suggested Applications" returning
 force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
-
 
 Write-Host "Removing old scheduled tasks"
 Unregister-ScheduledTask -TaskName "2_configure_windows" -Confirm:$false
