@@ -45,6 +45,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online
 
 # WSL2
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 
 Write-Host "Starting new script and stopping current one."
