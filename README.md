@@ -6,11 +6,10 @@ I'm constantly re-installing Windows and it's nice to have my configuration setu
 
 1. Run this in Powershell as Admin:
 ```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force ; iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) ; iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force ; iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) ; iex (new-object net.webclient).downloadstring('https://get.scoop.sh');exit
 ```
-2. Exit Powershell
 
-3. Start a new Powershell instance and run as admin:
+2. Start a new Powershell instance and run as admin:
 ```
 set-executionpolicy remotesigned -s currentuser; [System.net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; iwr http://github.com/Francommit/win10_config/raw/master/all_in_one.ps1 -UseBasicParsing | iex
 ```
