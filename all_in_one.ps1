@@ -1,9 +1,3 @@
-# Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-# iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-
-# Install Scoop
-iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-
 Write-Host "Setting the local timezone."
 Invoke-Expression 'tzutil /s "AUS Eastern Standard Time"'
 
