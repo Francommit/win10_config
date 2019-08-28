@@ -14,20 +14,3 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force ; iex ((new-object net.webcli
 ```
 set-executionpolicy remotesigned -s currentuser; [System.net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; iwr http://github.com/Francommit/win10_config/raw/master/all_in_one.ps1 -UseBasicParsing | iex
 ```
-
-
-
-
-OR
-
-
-
-## Steps Old
-
-1. Run this in Powershell as Admin:
-
-```
-set-executionpolicy remotesigned -s currentuser; [System.net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; iwr http://github.com/Francommit/win10_config/raw/master/1_configure_then_execute.ps1 -UseBasicParsing | iex
-```
-
-2. Enjoy a coffee and return in about half an hour (this varies depending on internet speed).
