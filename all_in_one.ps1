@@ -81,8 +81,6 @@ Write-Host "Place default AHK script in Startup folder. Shell:startup to navigat
 New-Item "$env:appdata\Microsoft\Windows\Start Menu\Programs\Startup\scripts.ahk" -type file -value "^!v::
 SendRaw, %Clipboard%
 return
-; Rebind Capslock to the windows key
-CapsLock::LWin
 "
 # Removing the Default Windows 10 Apps 
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
