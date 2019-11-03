@@ -59,7 +59,8 @@ choco install autohotkey -y
 choco install mobaxterm -y
 choco install openssh -y
 choco install powershell-core -y
-scoop install ffsend
+choco install kitty -y
+choco install winsshterm -y
 
 # Install Source Management apps
 choco install git -y
@@ -69,6 +70,10 @@ choco install gitextensions -y
 # Install IDE
 choco install sublimetext3 -y
 choco install sublimetext3.powershellalias -y
+choco install sublimemerge -y
+
+# Scoop Installations
+scoop install ffsend
 
 # Allowing using 'subl' on the command line
 Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
