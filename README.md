@@ -13,3 +13,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force ; iex ((new-object net.webcli
 ```
 set-executionpolicy remotesigned -s currentuser; [System.net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192 -bor 48; iwr http://github.com/Francommit/win10_config/raw/master/all_in_one.ps1 -UseBasicParsing | iex
 ```
+
+### Useful commands on new PC's
+Generate a SSH key identity
+`ssh-keygen`
