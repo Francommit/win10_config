@@ -17,3 +17,9 @@ set-executionpolicy remotesigned -s currentuser; [System.net.ServicePointManager
 ### Useful commands on new PC's
 Generate a SSH key identity
 `ssh-keygen`
+
+WSL Debian 10 Configuration
+`sudo apt -y install git zsh curl`
+
+Setup OhMyZsh
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
