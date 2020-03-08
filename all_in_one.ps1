@@ -39,14 +39,9 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 
 
 # Enable Windows Containers
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 
 # Enable Windows Sandbox
 Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online
-
-# WSL2
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 
 # Install Fundamentals
 choco install chocolateygui -y
@@ -60,6 +55,7 @@ choco install mobaxterm -y
 choco install royalts-v5 -y
 choco install openssh -y
 choco install powershell-core -y
+choco install fluent-terminal -y
 
 # Install Source Management apps
 choco install git -y
@@ -71,9 +67,6 @@ choco install vscodium -y
 choco install sublimetext3 -y
 choco install sublimetext3.powershellalias -y
 choco install sublimemerge -y
-
-# Scoop Installations
-scoop install ffsend
 
 # Allowing using 'subl' on the command line
 Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
