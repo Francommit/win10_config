@@ -55,7 +55,7 @@ choco install mobaxterm -y
 choco install royalts-v5 -y
 choco install openssh -y
 choco install powershell-core -y
-choco install fluent-terminal -y
+choco install vivaldi -y
 
 # Install Source Management apps
 choco install git -y
@@ -67,6 +67,14 @@ choco install vscodium -y
 choco install sublimetext3 -y
 choco install sublimetext3.powershellalias -y
 choco install sublimemerge -y
+
+# Gaming
+choco install battle.net --ignore-checksum -y
+choco install sidequest -y
+choco install steam -y
+choco install vortex -y
+choco install epicgameslauncher -y
+choco install bethesdanet -y
 
 # Allowing using 'subl' on the command line
 Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
