@@ -56,6 +56,8 @@ choco install royalts-v5 -y
 choco install openssh -y
 choco install powershell-core -y
 choco install vivaldi -y
+choco install microsoft-windows-terminal -y
+choco install docker-desktop -y
 
 # Install Source Management apps
 choco install git -y
