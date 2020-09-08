@@ -54,6 +54,7 @@ choco install openssh royalts-v5 mobaxterm -y
 choco install powershell-core -y
 choco install microsoft-windows-terminal -y
 choco install docker-desktop -y
+choco install notion -y
 
 # Install Source Management apps
 choco install git kdiff3 gitextensions -y
