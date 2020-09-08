@@ -1,7 +1,7 @@
-Write-Host "Setting the local timezone."
+# Set the local timezone, I don't know why it's always incorrectly set
 Invoke-Expression 'tzutil /s "AUS Eastern Standard Time"'
 
-Write-Host "Setting Power Settings: Disable Hibernation, Disable Standby, Set Various Timeouts"
+# Power management
 powercfg /h off
 powercfg -change -hibernate-timeout-dc 0
 powercfg -change -hibernate-timeout-ac 0
@@ -12,7 +12,7 @@ powercfg -change -monitor-timeout-ac 30
 powercfg -change -disk-timeout-dc 180
 powercfg -change -disk-timeout-ac 180
 
-Write-Host "Setting Windows Explorer settings: Show Hidden Files, Show File Extension, Open Explorer default to This PC"
+# Setting Windows Explorer settings: Show Hidden Files, Show File Extension, Open Explorer default to This PC
 Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoRestartShell -Value 0
 $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
 Set-ItemProperty $key Hidden 1
@@ -20,15 +20,10 @@ Set-ItemProperty $key HideFileExt 0
 Set-ItemProperty $key LaunchTo 1
 Set-ItemProperty $key ShowTaskViewButton 0
 
-# Show "This PC" on desktop
-New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Value 0
-
 # Hide Search button / box
-Write-Host "Hiding Search Box / Button..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
  
 # Show all tray icons
-Write-Host "Showing all tray icons..."
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
 
 # Remove "People Icon" from the taskbar
@@ -37,8 +32,21 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People
 # Turn Off App Suggestions on Start Menu
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 
+# Disable Stick keys
 Write-Output "Disabling Sticky keys prompt..."
 Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "506"
+
+# Task manager extended details by default
+Write-Output "Showing file operations details..."
+If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager")) {
+	New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" | Out-Null
+}
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -Type DWord -Value 1
+}
+
+# Prevents "Suggested Applications" returning
+force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
+Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
 
 # Enable Windows Containers
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
@@ -64,14 +72,8 @@ choco install git kdiff3 gitextensions -y
 
 # Install IDE
 choco install vscode vscodium sublimetext3 -y
-choco install sublimetext3.powershellalias -y
 choco install sublimemerge -y
 choco install steam epicgameslauncher -y
-
-# Allowing using 'subl' on the command line
-Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
-$systemPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name Path).Path
-Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value ($systemPath += ';C:\Program Files\Sublime Text 3\') 
 
 # Autohotkey script, capslock to Windows, ctrl + alt + v for pasting in remote sessions
 Write-Host "Place default AHK script in Startup folder. Shell:startup to navigate there"
@@ -117,6 +119,4 @@ Get-AppxPackage Facebook.Facebook | Remove-AppxPackage
 Get-AppxPackage Microsoft.MinecraftUWP | Remove-AppxPackage
 Get-AppxPackage *MarchofEmpires | Remove-AppxPackage
 
-# Prevents "Suggested Applications" returning
-force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
-Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
+
