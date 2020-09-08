@@ -37,6 +37,9 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People
 # Turn Off App Suggestions on Start Menu
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
 
+Write-Output "Disabling Sticky keys prompt..."
+Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "506"
+
 # Enable Windows Containers
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 
