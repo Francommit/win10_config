@@ -45,38 +45,24 @@ Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All 
 
 # Install Fundamentals
 choco install chocolateygui -y
-choco install jdk8 -y 
+choco install jdk8 autohotkey -y 
 choco install 7zip -y 
-choco install googlechrome -y 
+choco install microsoft-edge firefox -y 
 choco install everything --params "/service" -y
 choco install deluge -y
-choco install autohotkey -y
-choco install mobaxterm -y
-choco install royalts-v5 -y
-choco install openssh -y
+choco install openssh royalts-v5 mobaxterm -y
 choco install powershell-core -y
-choco install vivaldi -y
 choco install microsoft-windows-terminal -y
 choco install docker-desktop -y
 
 # Install Source Management apps
-choco install git -y
-choco install kdiff3 -y
-choco install gitextensions -y
+choco install git kdiff3 gitextensions -y
 
 # Install IDE
-choco install vscodium -y
-choco install sublimetext3 -y
+choco install vscode vscodium sublimetext3 -y
 choco install sublimetext3.powershellalias -y
 choco install sublimemerge -y
-
-# Gaming
-choco install battle.net --ignore-checksum -y
-choco install sidequest -y
-choco install steam -y
-choco install vortex -y
-choco install epicgameslauncher -y
-choco install bethesdanet -y
+choco install steam epicgameslauncher -y
 
 # Allowing using 'subl' on the command line
 Write-Host "Adding Sublime Text 3 to the system path as 'subl'"
