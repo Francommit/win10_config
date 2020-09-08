@@ -27,7 +27,15 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
 
 # Remove "People Icon" from the taskbar
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /V PeopleBand /T REG_DWORD /D 0 /F
+If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
+	New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
+}
+
+# Unpin all Taskbar icons
+Write-Output "Unpinning all Taskbar icons..."
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
+Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 
 # Turn Off App Suggestions on Start Menu
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscribedContent-338388Enabled /t REG_DWORD /d 0 /f >nul 2>&1
@@ -48,11 +56,21 @@ Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 force-mkdir "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content"
 Set-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Cloud Content" "DisableWindowsConsumerFeatures" 1
 
+# Disable search for app in store for unknown extensions
+Write-Output "Disabling search for app in store for unknown extensions..."
+If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer")) {
+	New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" | Out-Null
+}
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoUseStoreOpenWith" -Type DWord -Value 1
+
 # Enable Windows Containers
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 
 # Enable Windows Sandbox
 Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online
+
+# Enables Windows Subsystems
+Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 
 # Install Fundamentals
 choco install chocolateygui -y
@@ -86,7 +104,7 @@ return
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\take-own.psm1
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\force-mkdir.psm1
 
-# Taken from - https://gist.github.com/tkrotoff/830231489af5c5818b15
+# Taken from - https://gist.github.com/alirobe/7f3b34ad89a159e6daa1
 Get-AppxPackage Microsoft.Windows.ParentalControls | Remove-AppxPackage
 Get-AppxPackage Windows.ContactSupport | Remove-AppxPackage
 Get-AppxPackage Microsoft.Xbox* | Remove-AppxPackage
@@ -109,7 +127,6 @@ Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsSoundRecorder | Remove-AppxPackage
 Get-AppxPackage Microsoft.3DBuilder | Remove-AppxPackage
 Get-AppxPackage Microsoft.Advertising.Xaml | Remove-AppxPackage
-Get-AppxPackage Microsoft.Windows.ParentalControls | Remove-AppxPackage
 Get-AppxPackage Microsoft.Windows.ContentDeliveryManager | Remove-AppxPackage
 Get-AppxPackage *Twitter* | Remove-AppxPackage
 Get-AppxPackage king.com.CandyCrushSodaSaga | Remove-AppxPackage
@@ -118,5 +135,48 @@ Get-AppxPackage *Netflix | Remove-AppxPackage
 Get-AppxPackage Facebook.Facebook | Remove-AppxPackage
 Get-AppxPackage Microsoft.MinecraftUWP | Remove-AppxPackage
 Get-AppxPackage *MarchofEmpires | Remove-AppxPackage
+Get-AppxPackage "2414FC7A.Viber" | Remove-AppxPackage
+Get-AppxPackage "41038Axilesoft.ACGMediaPlayer" | Remove-AppxPackage
+Get-AppxPackage "46928bounde.EclipseManager" | Remove-AppxPackage
+Get-AppxPackage "4DF9E0F8.Netflix" | Remove-AppxPackage
+Get-AppxPackage "64885BlueEdge.OneCalendar" | Remove-AppxPackage
+Get-AppxPackage "7EE7776C.LinkedInforWindows" | Remove-AppxPackage
+Get-AppxPackage "828B5831.HiddenCityMysteryofShadows" | Remove-AppxPackage
+Get-AppxPackage "89006A2E.AutodeskSketchBook" | Remove-AppxPackage
+Get-AppxPackage "9E2F88E3.Twitter" | Remove-AppxPackage
+Get-AppxPackage "A278AB0D.DisneyMagicKingdoms" | Remove-AppxPackage
+Get-AppxPackage "A278AB0D.MarchofEmpires" | Remove-AppxPackage
+Get-AppxPackage "ActiproSoftwareLLC.562882FEEB491" | Remove-AppxPackage
+Get-AppxPackage "AdobeSystemsIncorporated.AdobePhotoshopExpress" | Remove-AppxPackage
+Get-AppxPackage "CAF9E577.Plex" | Remove-AppxPackage
+Get-AppxPackage "D52A8D61.FarmVille2CountryEscape" | Remove-AppxPackage
+Get-AppxPackage "D5EA27B7.Duolingo-LearnLanguagesforFree" | Remove-AppxPackage
+Get-AppxPackage "DB6EA5DB.CyberLinkMediaSuiteEssentials" | Remove-AppxPackage
+Get-AppxPackage "DolbyLaboratories.DolbyAccess" | Remove-AppxPackage
+Get-AppxPackage "Drawboard.DrawboardPDF" | Remove-AppxPackage
+Get-AppxPackage "Facebook.Facebook" | Remove-AppxPackage
+Get-AppxPackage "flaregamesGmbH.RoyalRevolt2" | Remove-AppxPackage
+Get-AppxPackage "GAMELOFTSA.Asphalt8Airborne" | Remove-AppxPackage
+Get-AppxPackage "KeeperSecurityInc.Keeper" | Remove-AppxPackage
+Get-AppxPackage "king.com.BubbleWitch3Saga" | Remove-AppxPackage
+Get-AppxPackage "king.com.CandyCrushSodaSaga" | Remove-AppxPackage
+Get-AppxPackage "PandoraMediaInc.29680B314EFC2" | Remove-AppxPackage
+Get-AppxPackage "SpotifyAB.SpotifyMusic" | Remove-AppxPackage
+Get-AppxPackage "WinZipComputing.WinZipUniversal" | Remove-AppxPackage
+Get-AppxPackage "XINGAG.XING" | Remove-AppxPackage
+
+
+# Unpin all Start Menu tiles
+If ([System.Environment]::OSVersion.Version.Build -ge 15063 -And [System.Environment]::OSVersion.Version.Build -le 16299) {
+	Get-ChildItem -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount" -Include "*.group" -Recurse | ForEach-Object {
+		$data = (Get-ItemProperty -Path "$($_.PsPath)\Current" -Name "Data").Data -Join ","
+		$data = $data.Substring(0, $data.IndexOf(",0,202,30") + 9) + ",0,202,80,0,0"
+		Set-ItemProperty -Path "$($_.PsPath)\Current" -Name "Data" -Type Binary -Value $data.Split(",")
+	}
+} ElseIf ([System.Environment]::OSVersion.Version.Build -eq 17133) {
+	$key = Get-ChildItem -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount" -Recurse | Where-Object { $_ -like "*start.tilegrid`$windows.data.curatedtilecollection.tilecollection\Current" }
+	$data = (Get-ItemProperty -Path $key.PSPath -Name "Data").Data[0..25] + ([byte[]](202,50,0,226,44,1,1,0,0))
+	Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
+}
 
 
