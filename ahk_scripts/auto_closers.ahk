@@ -1,3 +1,8 @@
+; Ctrl + alt + v --> Type out the clipboard
+^!v::
+SendRaw, %Clipboard%
+return
+
 ; Shift + Alt + Left --> becomes Shift + Home
 !+Left::
 Send, {Shift down}{Home}{Shift up}
@@ -8,7 +13,7 @@ return
 Send, {Shift down}{End}{Shift up}
 return
 
-; Google Search select text - Ctrl + Shift + C
+; Google Search selected text --> Ctrl + Shift + C
  ^+c::
  {
   Send, ^c
