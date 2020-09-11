@@ -1,25 +1,19 @@
-﻿#NoEnv
-SetWorkingDir %A_ScriptDir%
-CoordMode, Mouse, Window
-SendMode Input
-#SingleInstance Force
-SetTitleMatchMode 2
-DetectHiddenWindows Off
-#WinActivateForce
-SetControlDelay 1
-SetWinDelay 0
-SetKeyDelay -1
-SetMouseDelay -1
-SetBatchLines -1
+; Shift + Alt + Left --> becomes Shift + Home
+!+Left::
+Send, {Shift down}{Home}{Shift up}
+return
 
+; Shift + Alt + Right --> becomes Shift + End
+!+Right::
+Send, {Shift down}{End}{Shift up}
+return
 
-Macro1:
-Loop
-{
-    WinActivate, This is an unregistered copy
-    Sleep, 333
-    WinKill, This is an unregistered copy
-    Sleep, 333
-}
-Return
-
+; Google Search select text - Ctrl + Shift + C
+ ^+c::
+ {
+  Send, ^c
+  Sleep 50
+  Run, http://www.google.com/search?q=%clipboard%
+  Return
+ }
+return
